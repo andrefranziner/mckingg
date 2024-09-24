@@ -1,3 +1,7 @@
+![image](https://github.com/user-attachments/assets/4c48fc88-0835-4cc5-9dfb-398aa90dbfcf)
+
+
+
 📱 Delivery App
 
 Este é um aplicativo mobile de delivery desenvolvido em React Native que permite aos usuários realizar pedidos de comida de forma prática e rápida. 
@@ -6,6 +10,7 @@ O aplicativo oferece uma interface intuitiva, opções de personalização de pe
 ✨ Funcionalidades
 
 Autenticação de Usuários: Login e cadastro de novos usuários.
+
 Escolha de Produtos: O usuário pode navegar por categorias e selecionar itens do cardápio.
 
 Personalização de Lanches: O usuário pode personalizar seu lanche utilizando switches para adicionar ou remover ingredientes.
