@@ -1,5 +1,5 @@
 
-           <img src="logo_icon-removebg-preview.png" alt="logo_icon">
+      file:///C:/Users/gustavo.0929/Downloads/Design%20sem%20nome%20(7).png
 
 
 	📱 Delivery App
