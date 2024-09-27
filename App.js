@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react';
-import { View } from 'react-native';
-import CadastroScreen from './src/CadastroScreen'; // Ajuste o caminho conforme necessário
-import { createTables } from './services/databaseService.js'; // Ajuste o caminho conforme necessário
+import React, { useState, useEffect } from 'react';
+import { View, Button } from 'react-native';
+import CadastroScreen from './src/CadastroScreen';
+import LoginScreen from './src/LoginScreen';
 
 export default function App() {
-  useEffect(() => {
-    createTables();
-  }, []);
+  const [isCadastro, setIsCadastro] = useState(true);
 
   return (
     <View style={{ flex: 1 }}>
-      <CadastroScreen />
+      {isCadastro ? (
+        <CadastroScreen />
+      ) : (
+        <LoginScreen />
+      )}
+      <Button
+        title={isCadastro ? "Ir para Login" : "Ir para Cadastro"}
+        onPress={() => setIsCadastro(!isCadastro)}
+      />
     </View>
   );
 }

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet } from 'react-native';
-import { insertUsuario, getUsuarioByEmail } from '../database/database.js';
+import { getUsuarioByEmail } from '../database/database.js';
 
-const CadastroScreen = () => {
+const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const handleCadastro = async () => {
+  const handleLogin = async () => {
     if (email === '' || senha === '') {
       Alert.alert('Erro', 'Por favor, preencha todos os campos.');
       return;
@@ -14,16 +14,13 @@ const CadastroScreen = () => {
 
     try {
       const user = await getUsuarioByEmail(email);
-      if (user) {
-        Alert.alert('Erro', 'Email já cadastrado.');
+      if (user && user.SENHA === senha) {
+        Alert.alert('Sucesso', 'Login realizado com sucesso!');
       } else {
-        await insertUsuario(email, senha);
-        Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
-        setEmail('');
-        setSenha('');
+        Alert.alert('Erro', 'Credenciais incorretas.');
       }
     } catch (error) {
-      Alert.alert('Erro', error.message || 'Falha ao cadastrar usuário.');
+      Alert.alert('Erro', 'Falha ao realizar login.');
       console.error(error);
     }
   };
@@ -44,7 +41,7 @@ const CadastroScreen = () => {
         onChangeText={setSenha}
         secureTextEntry
       />
-      <Button title="Cadastrar" onPress={handleCadastro} />
+      <Button title="Login" onPress={handleLogin} />
     </View>
   );
 };
@@ -64,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CadastroScreen;
+export default LoginScreen;
