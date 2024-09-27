@@ -5,7 +5,7 @@ import supabase from './supabaseClient';
 export const insertUsuario = async (email, senha) => {
     const { data, error } = await supabase
         .from('usuario') // nome da tabela em minúsculas
-        .insert([{ email: email, email: senha }]);
+        .insert([{ email: email, senha: senha }]); // Corrigir 'email: senha' para 'senha: senha'
     
     if (error) throw error;
     return data;
