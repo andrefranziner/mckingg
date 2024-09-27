@@ -1,0 +1,56 @@
+Documentação.txt
+
+1. Introdução
+
+O projeto "Fast Food Delivery App" é um aplicativo móvel desenvolvido para facilitar a experiência de alimentação dos usuários, permitindo que eles façam pedidos de fast food de maneira rápida e eficiente. Com a crescente demanda por soluções de entrega, este aplicativo visa proporcionar uma interface amigável e intuitiva, onde os usuários podem explorar uma variedade de opções, visualizar menus, personalizar pedidos e realizar pagamentos de forma segura.
+O objetivo principal do aplicativo é otimizar o processo de pedido e entrega, reduzindo o tempo que os usuários gastam na escolha e compra de suas refeições. Além disso, o aplicativo oferece recursos como rastreamento de pedidos em tempo real, promoções exclusivas, garantindo que os usuários tenham uma experiência satisfatória e conveniente.
+Com este projeto, buscamos não apenas atender às necessidades alimentares dos usuários, mas também transformar a forma como eles interagem com o serviço de delivery, tornando-o mais acessível e eficiente.
+2. Objetivos
+•	Facilitar a comunicação entre os desenvolvedores.
+•	Padronizar o processo de requisição de código.
+•	Garantir que todos os códigos sejam documentados de forma clara e acessível.
+3. Escopo
+Esta documentação se aplica a todos os projetos de desenvolvimento de software na empresa, abrangendo desde a criação de novos códigos até a manutenção de códigos existentes.
+4. Requisitos
+4.1. Requisitos Técnicos
+•	Linguagem de Programação: JavaScript JSX
+•	Framework: ReactNative
+•	Banco de Dados: SQLite
+•	Versão do Código: 3.0.0
+4.2. Requisitos de Documentação
+•	Todo código deve ser acompanhado de comentários explicativos.
+•	A documentação deve ser mantida em um repositório acessível a todos os desenvolvedores.
+•	As instruções de instalação e uso devem ser claras e concisas.
+5. Instruções de Uso
+5.1. Instalação
+1.	Clone o repositório:
+git clone https://github.com/andrefranziner/mcking
+2.	Navegue até o diretório do projeto:
+cd  
+3.	Instale as dependências:
+npm install @react-navigation/native
+npm install @react-navigation/Stack
+npm install react-native-screens react-native-safe-area-context
+ npm install react-native-vector-icons
+ npm install styled-components
+npm install react-native-paper
+    
+5.2. Execução
+Para iniciar o servidor, execute:
+npm run web
+6. Modelo de Requisição de Código
+Para solicitar um código, preencha o formulário abaixo e envie para a equipe de desenvolvimento.
+Formulário de Requisição
+•	Nome do Solicitante: Peterson
+•	E-mail: petermatadorpt13@gmail.com
+•	Descrição do Código Requerido: App Delivery
+•	Data Limite: 04/10/24
+•	Prioridade: Alta
+•	Justificativa: pra passar de ano
+Envio
+Envie o formulário preenchido para: a Edna
+7. Contato
+Para dúvidas ou mais informações, entre em contato com a equipe de desenvolvimento pessoalmente com o Gustavo
+8. Revisão e Atualização
+Esta documentação deve ser revisada diariamente ou sempre que houver mudanças significativas nos processos de desenvolvimento ou requisição de código.
+
