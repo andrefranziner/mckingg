@@ -31,8 +31,8 @@ cd
 npm install @react-navigation/native
 npm install @react-navigation/Stack
 npm install react-native-screens react-native-safe-area-context
- npm install react-native-vector-icons
- npm install styled-components
+npm install react-native-vector-icons
+npm install styled-components
 npm install react-native-paper
     
 5.2. Execução
