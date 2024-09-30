@@ -1,6 +1,6 @@
 
-      file:///C:/Users/gustavo.0929/Downloads/Design%20sem%20nome%20(7).png
 
+            file:///C:/Users/gustavo.0929/Pictures/mcking.png.png
 
 	📱 Delivery App
 	Este é um aplicativo mobile de delivery desenvolvido em React Native que permite aos usuários realizar pedidos de comida de forma prática e rápida. O aplicativo oferece uma interface intuitiva, opções de personalização de pedidos e navegação simples entre as telas.
