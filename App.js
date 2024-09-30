@@ -19,12 +19,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Pedidos">
-        <Stack.Screen
-          name="Pedidos"
-          component={Pedidos}
-          options={{ headerShown: false }} // Remove a barra
-        />
+      <Stack.Navigator initialRouteName="Cadastro">
         <Stack.Screen
           name="Cadastro"
           component={Cadastro}
@@ -35,6 +30,24 @@ function App() {
             headerTintColor: "#b88e41"
           }}
         />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            title: "Login",
+            headerShown: false,  // Remove a barra
+            headerStyle: { backgroundColor: "#0c212d" },
+            headerTintColor: "#b88e41"
+          }} />
+        <Stack.Screen
+          name="Pedidos"
+          component={Pedidos}
+          options={{
+            title: "Pedidos",
+            headerShown: false,  // Remove a barra
+            headerStyle: { backgroundColor: "#0c212d" },
+            headerTintColor: "#b88e41"
+          }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

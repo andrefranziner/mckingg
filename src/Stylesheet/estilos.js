@@ -98,7 +98,7 @@ const estilos = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         borderRadius: 15,
-        color: 'lightgray'
+        color: 'black'
     },
     enviar: {
         backgroundColor: 'red',
