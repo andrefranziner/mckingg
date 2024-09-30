@@ -1,6 +1,5 @@
 
-        
-                  ![logo icon](https://github.com/user-attachments/assets/fe393c77-091b-4e8d-86fa-cce84b8a39c6)
+ ![logo icon](https://github.com/user-attachments/assets/fe393c77-091b-4e8d-86fa-cce84b8a39c6)
 
             
 	📱 Delivery App
