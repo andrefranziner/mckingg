@@ -50,3 +50,12 @@ export const getUsuarioByEmail = async (email) => {
 
     return data[0]; // Retorna o primeiro usuário encontrado
 };
+
+export const insertProduto = async (nomeProduto, descricao, preco) => {
+    const { data, error } = await supabase
+        .from('produtos') // nome da tabela em minúsculas
+        .insert([{ nome_produto: nomeProduto, descricao: descricao, preco: preco }]); // Utilize os nomes de coluna corretos
+    
+    if (error) throw error;
+    return data;
+};

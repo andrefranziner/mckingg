@@ -65,6 +65,7 @@ function Endereco({ idUsuario }) { // Recebe o ID do usuário como prop
           value={cep}
           onChangeText={handleCepChange}
           keyboardType="numeric"
+          maxLength={9}
         />
         <TextInput
           style={estilos.input}
