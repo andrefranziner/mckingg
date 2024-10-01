@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-nati
 import { estilos } from './Stylesheet/estilos';
 
 
-function Login() {
+function Produto() {
     return (
         <View style={estilos.fundo}>
             <View style={estilos.header}>
@@ -46,4 +46,4 @@ function Login() {
     );
 } 
 
-export default Login; 
+export default Produto; 

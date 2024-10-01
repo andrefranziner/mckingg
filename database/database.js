@@ -12,6 +12,27 @@ export const insertUsuario = async (email, senha) => {
     return data;
 };
 
+// Função para inserir um novo endereço
+export const insertEndereco = async (idUsuario, rua, cep, cidade, bairro, estado) => {
+  const { data, error } = await supabase
+    .from('endereco') // Nome da tabela em minúsculas
+    .insert([
+      {
+        id_usuario: idUsuario, // Chave estrangeira para o usuário
+        rua: rua,
+        cep: cep,
+        cidade: cidade,
+        bairro: bairro,
+        estado: estado
+      }
+    ]);
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+};
 
 // Função para verificar se o usuário existe no banco de dados
 // Função para verificar se o usuário existe no banco de dados

@@ -16,6 +16,7 @@
     "@react-navigation/native-stack": "^6.9.26",
     "@rneui/themed": "^4.0.0-rc.8",
     "@supabase/supabase-js": "^2.45.4",
+    "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "expo": "~50.0.14",
     "expo-sqlite": "~13.4.0",

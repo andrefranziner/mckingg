@@ -3,6 +3,7 @@ import { useState } from 'react'; // Importar useState
 import { useNavigation } from '@react-navigation/native'; // Importa o hook de navegação
 import { estilos } from './Stylesheet/estilos';
 import { getUsuarioByEmail } from '../database/database'; // Importa a função do banco de dados
+import Cadastro from './Cadastro';
 
 function Login() {
   const [email, setEmail] = useState(''); // Definindo o estado para o email
@@ -28,6 +29,10 @@ function Login() {
     }
   };
 
+  const irParaCadastro = () => {
+    navigation.navigate('Cadastro');
+  };
+
   return (
     <View style={estilos.fundo}>
       <View style={estilos.container}>
@@ -51,6 +56,10 @@ function Login() {
 
         <TouchableOpacity onPress={handleLogin}>
           <Text style={estilos.enviarLogin}>ENVIAR</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={irParaCadastro}>
+          <Text style={estilos.textoLogin}>Ainda não tem uma conta? Realize o cadastro</Text>
         </TouchableOpacity>
       </View>
     </View>

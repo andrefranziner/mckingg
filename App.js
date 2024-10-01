@@ -19,7 +19,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Cadastro">
+      <Stack.Navigator initialRouteName="Endereco">
         <Stack.Screen
           name="Cadastro"
           component={Cadastro}
@@ -44,6 +44,15 @@ function App() {
           component={Pedidos}
           options={{
             title: "Pedidos",
+            headerShown: false,  // Remove a barra
+            headerStyle: { backgroundColor: "#0c212d" },
+            headerTintColor: "#b88e41"
+          }} />
+        <Stack.Screen
+          name="Endereco"
+          component={Endereco}
+          options={{
+            title: "Endereco",
             headerShown: false,  // Remove a barra
             headerStyle: { backgroundColor: "#0c212d" },
             headerTintColor: "#b88e41"

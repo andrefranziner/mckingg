@@ -3,7 +3,6 @@ import { ScrollView } from "react-native-web";
 
 
 const estilos = StyleSheet.create({
-
     fundo: {
         flex: 1,
     },
@@ -276,6 +275,12 @@ const estilos = StyleSheet.create({
         color: 'white',
         height: 20,
         marginHorizontal: 15
+    },
+    textoLogin: {
+        marginTop: 20,
+        color: '#B50B0B', 
+        fontWeight: 'bold',
+        alignSelf: 'center'
     }
 
 });

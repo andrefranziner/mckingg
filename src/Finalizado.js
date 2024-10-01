@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-nati
 import { estilos } from './Stylesheet/estilos';
 
 
-function Login() {
+function Finalizado() {
     return (
         <View style={estilos.fundo}>
             <View style={{flexDirection: 'row'}}>
@@ -45,4 +45,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Finalizado;

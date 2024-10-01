@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-nati
 import { estilos } from './Stylesheet/estilos';
 
 
-function Login() {
+function Carrinho() {
     return (
         <View style={estilos.fundo}>
             <View style={{ backgroundColor: 'white', shadowColor: 'gray', shadowOffset: { width: 0, height: 3 }, elevation: 5, shadowOpacity: 0.5, height: 70, borderRadius: 25, flexDirection: 'row' }}>
@@ -65,4 +65,4 @@ function Login() {
     );
 }
 
-export default Login; 
+export default Carrinho; 

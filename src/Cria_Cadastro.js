@@ -3,7 +3,7 @@ import { estilos } from './Stylesheet/estilos';
 
 
 
-function App() {
+function Cria_Cadastro() {
   return (
     <View style={estilos.fundo}>
       <View style={estilos.container}>
@@ -32,4 +32,4 @@ function App() {
   );
 }
 
-export default App;
+export default Cria_Cadastro;
