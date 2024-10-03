@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Importando todas as telas
 import Cria_Cadastro from './src/Cria_Cadastro';
@@ -16,14 +17,28 @@ import CadastroProdutos from "./src/CadastroProdutos";
 
 function App() {
   const Stack = createNativeStackNavigator();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const usuario = await AsyncStorage.getItem('usuario');
+        setIsLoggedIn(!!usuario); // Converte para booleano
+      } catch (error) {
+        console.error("Erro ao verificar o status de login:", error);
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Pedidos">
+      <Stack.Navigator initialRouteName={isLoggedIn ? "Pedidos" : "Pedidos"}>
         <Stack.Screen
           name="Pedidos"
           component={Pedidos}
-          options={{ headerShown: false }} // Remove a barra
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Cadastro"
@@ -39,7 +54,7 @@ function App() {
           name="CadastroProdutos"
           component={CadastroProdutos}
           options={{
-            title: "CadastroProdutos",
+            title: "Cadastro de Produtos",
             headerShown: false,
             headerStyle: { backgroundColor: "#0c212d" },
             headerTintColor: "#b88e41"
@@ -48,15 +63,12 @@ function App() {
         <Stack.Screen
           name="Carrinho"
           component={Carrinho}
-          // Registrando a tela Carrinho
           options={{
             headerShown: false,
             headerStyle: { backgroundColor: "#0c212d" },
             headerTintColor: "#b88e41"
-          }} // Remove a barra
-
+          }}
         />
-        {/* Adicione outras telas conforme necessário */}
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cria_Cadastro" component={Cria_Cadastro} />
         <Stack.Screen name="Endereco" component={Endereco} />

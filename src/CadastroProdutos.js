@@ -63,22 +63,44 @@ function CadastroProdutos() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        padding: 20,
-        justifyContent: 'center',
-        backgroundColor: '#FFD700', // Fundo amarelo
+        backgroundColor: '#FFE600',
+        alignItems: 'center',
+        height: 500,
+        marginTop: 120,
+        marginHorizontal: 20,
+        borderRadius: 40,
+        borderColor: '#FF5C00',
+        borderWidth: 2
     },
     label: {
         marginBottom: 5,
         fontSize: 16,
+        fontWeight: 'bold',
+        color: '#FF5C00',
+        marginTop: 15
+ 
     },
     input: {
+        backgroundColor: 'white',
+        height: 40,
+        width: 250,
+        margin: 12,
+        borderColor: '#FF5C00',
         borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
+        padding: 10,
+        borderRadius: 15,
+        color: 'lightgray'
+    },
+    input1: {
+        borderWidth: 1,
+        borderColor: '#FF5C00',
+        borderRadius: 15,
+        width: 250,
         padding: 10,
         marginBottom: 20,
         backgroundColor: '#fff', // Fundo branco para os inputs
+        marginHorizontal: 10,
+        color: 'lightgray'
     },
 });
 

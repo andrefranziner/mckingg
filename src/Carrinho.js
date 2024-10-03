@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { estilos } from './Stylesheet/estilos'; // Certifique-se que o estilo está correto
+import { Picker } from '@react-native-picker/picker'; // Importação correta do Picker
  
 function Carrinho() {
+    const [itemSelecionado, setItemSelecionado] = useState("Verificar Status");
+ 
+    function trocaItemSelecionado(itemIndex) {
+        setItemSelecionado(itemIndex);
+    }
+ 
     // Estado para controlar a quantidade dos itens
     const [quantidades, setQuantidades] = useState([0, 0, 0]); // Inicializando 3 produtos com 0
  
@@ -76,19 +83,20 @@ function Carrinho() {
                     </View>
                 </View>
  
-                <View style={{ backgroundColor: 'white', marginTop: 50, height: 100, shadowColor: 'gray', shadowOffset: { width: 3, height: 3 }, elevation: 7, shadowOpacity: 0.5, borderRadius: 25, marginHorizontal: 25, flexDirection: 'row' }}>
-                    <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Confirmar Endereço: </Text>
-                    <View style={{ backgroundColor: 'white', width: 20, height: 20, borderRadius: 25, borderColor: 'gray', borderWidth: 3, marginLeft: 120, marginTop: 4 }}>
-                        <View style={{ backgroundColor: 'green', width: 10, height: 10, borderRadius: 25, marginLeft: 2, marginTop: 2 }}></View>
-                    </View>
+                <View style={{ alignItems: 'center' }}>
+                    <Image source={require('./img/pix.png')} style={{ marginTop: 5 }} />
+                    <Text style={estilos.botaoPedido}>Finalizar Pedido</Text>
                 </View>
  
-                <View style={estilos.footer}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Text style={estilos.dadosProdutos}>Quantidade total: {quantidades.reduce((a, b) => a + b, 0)}</Text>
-                        <Text style={estilos.botaoPedido}>Finalizar Pedido</Text>
-                    </View>
-                </View>
+                <Picker
+                style={{color: '#B50B0B', textAlign: 'center', marginTop: 5, border: 'none', marginHorizontal: 50, borderRadius: 15, height: 65, fontSize: 25, fontWeight: 'bold'}}
+                    selectedValue={itemSelecionado}
+                    onValueChange={trocaItemSelecionado}>
+                    <Picker.Item label="Verificar Status" value="0" />
+                    <Picker.Item label="Você pediu" value="1" />
+                    <Picker.Item label="Nome:" value="2" />
+                    <Picker.Item label="Forma de" value="3" />
+                </Picker>
             </ScrollView>
         </View>
     );

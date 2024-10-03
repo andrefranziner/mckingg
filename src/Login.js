@@ -3,6 +3,7 @@ import { useState } from 'react'; // Importar useState
 import { useNavigation } from '@react-navigation/native'; // Importa o hook de navegação
 import { estilos } from './Stylesheet/estilos';
 import { getUsuarioByEmail } from '../database/database'; // Importa a função do banco de dados
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Cadastro from './Cadastro';
 
 function Login() {
@@ -12,22 +13,25 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const usuario = await getUsuarioByEmail(email);
+        const usuario = await getUsuarioByEmail(email);
 
-      // Verifica se o usuário foi encontrado e se a senha está correta
-      if (usuario && usuario.senha === senha) {
-        Alert.alert("Login realizado com sucesso!");
-        
-        // Redireciona para a página de Pedidos
-        navigation.navigate('Pedidos'); // Nome da tela de Pedidos no seu Navigator
-      } else {
-        Alert.alert("E-mail ou senha incorretos!");
-      }
+        // Verifica se o usuário foi encontrado e se a senha está correta
+        if (usuario && usuario.senha === senha) {
+            Alert.alert("Login realizado com sucesso!");
+
+            // Armazenar informações do usuário (como ID ou email)
+            await AsyncStorage.setItem('usuario', JSON.stringify(usuario));
+
+            // Redireciona para a página de Pedidos
+            navigation.navigate('Pedidos');
+        } else {
+            Alert.alert("E-mail ou senha incorretos!");
+        }
     } catch (error) {
-      Alert.alert("Ocorreu um erro ao realizar o login. Tente novamente.");
-      console.error(error);
+        Alert.alert("Ocorreu um erro ao realizar o login. Tente novamente.");
+        console.error(error);
     }
-  };
+};
 
   const irParaCadastro = () => {
     navigation.navigate('Cadastro');
