@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, TextInput, ScrollView, TouchableOpacity, Button } from 'react-native'; // Importando Button
+import { Text, View, Image, TextInput, ScrollView, TouchableOpacity, Modal, Alert } from 'react-native';
 import { estilos } from './Stylesheet/estilos';
 import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from '@react-native-async-storage/async-storage'; // Não esqueça de importar AsyncStorage
-import supabase from '../database/supabaseClient'; // Certifique-se de ter a conexão com o Supabase
+import supabase from '../database/supabaseClient';
 
 function Pedidos() {
     const nav = useNavigation();
     const [produtos, setProdutos] = useState([]);
-
-    const handleLogout = async () => {
-        await AsyncStorage.removeItem('usuario');
-        // Redirecionar para a tela de Login ou fazer outras ações necessárias
-        nav.navigate('Login'); // Corrigido para usar nav
-    };
+    const [carrinho, setCarrinho] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
 
     // Função para buscar os produtos do Supabase
     const fetchProdutos = async () => {
@@ -36,6 +31,23 @@ function Pedidos() {
         fetchProdutos();
     }, []);
 
+    // Função para adicionar produto ao carrinho
+    const adicionarAoCarrinho = (produto) => {
+        setCarrinho((prevCarrinho) => {
+            const novoCarrinho = [...prevCarrinho, produto];
+            Alert.alert('Sucesso', `${produto.nome_produto} foi adicionado ao carrinho!`);
+            return novoCarrinho;
+        });
+    };
+
+    // Função para remover produto do carrinho
+    const removerDoCarrinho = (index) => {
+        setCarrinho((prevCarrinho) => {
+            const novoCarrinho = prevCarrinho.filter((_, i) => i !== index);
+            return novoCarrinho;
+        });
+    };
+
     return (
         <View style={estilos.fundo}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -56,37 +68,70 @@ function Pedidos() {
 
             <View style={estilos.containerPedidos}>
                 <ScrollView>
-
                     {produtos.map((produto, index) => (
-                        <View key={index} style={estilos.pedidos}>
-                            <Image source={{ uri: produto.imagem_url }} style={{ width: 87, height: 87, marginLeft: 10, marginTop: 5 }} />
-                            <View style={{ marginLeft: 110, marginTop: -70 }}>
-                                <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{produto.nome_produto}</Text>
-                                <Text>{produto.descricao}</Text>
-                                <Text style={{ color: '#FF5C00', fontWeight: 'bold' }}>R$ {produto.preco}</Text>
+                        <View key={index} style={[estilos.pedidos, { flexDirection: 'row', alignItems: 'center', marginBottom: 20 }]}>
+                            <Image source={{ uri: produto.imagem_url }} style={{ width: 80, height: 80, borderRadius: 10, marginRight: 15 }} />
+                            <View style={{ flex: 1 }}>
+                                <Text style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 5 }}>{produto.nome_produto}</Text>
+                                <Text style={{ fontSize: 14, color: '#666', marginBottom: 5 }}>{produto.descricao}</Text>
+                                <Text style={{ color: '#FF5C00', fontWeight: 'bold', fontSize: 16 }}>R$ {produto.preco.toFixed(2)}</Text>
                             </View>
+                            <TouchableOpacity onPress={() => adicionarAoCarrinho(produto)}>
+                                <Image source={require('./img/compracar.png')} style={{ width: 40, height: 40 }} />
+                            </TouchableOpacity>
                         </View>
                     ))}
                 </ScrollView>
             </View>
 
-            <View style={estilos.barraInteracao}>
-                <TouchableOpacity onPress={() => nav.navigate('Pedidos')}>
-                    <Image source={require('./img/talher.png')} style={{ width: 30, height: 34, marginTop: 10 }} />
-                </TouchableOpacity>
+            <TouchableOpacity 
+                style={{ position: 'absolute', bottom: 20, right: 20, backgroundColor: '#FF5C00', borderRadius: 50, padding: 10 }}
+                onPress={() => setModalVisible(true)}
+            >
+                <Text style={{ color: '#fff', fontWeight: 'bold' }}>Ver Carrinho</Text>
+            </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => nav.navigate('TelaPesquisa')}>
-                    <Image source={require('./img/pesquisa.png')} style={{ width: 50, height: 50, marginTop: 2 }} />
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => nav.navigate('Carrinho')}>
-                    <Image source={require('./img/carrinho.png')} style={{ width: 45, height: 40, marginTop: 8 }} />
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={handleLogout}>
-                    <Image source={require('./img/perfil.png')} style={{ width: 50, height: 50, marginTop: 5 }} />
-                </TouchableOpacity>
-            </View>
+            {/* Modal do Carrinho */}
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                    <View style={{ width: '80%', backgroundColor: '#fff', borderRadius: 10, padding: 20 }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>Carrinho</Text>
+                        {carrinho.length === 0 ? (
+                            <Text style={{ textAlign: 'center' }}>Seu carrinho está vazio.</Text>
+                        ) : (
+                            carrinho.map((item, index) => (
+                                <View key={index} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+                                    <Text>{item.nome_produto}</Text>
+                                    <Text>R$ {item.preco.toFixed(2)}</Text>
+                                    <TouchableOpacity onPress={() => removerDoCarrinho(index)}>
+                                        <Text style={{ color: 'red' }}>Remover</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            ))
+                        )}
+                        <TouchableOpacity
+                            style={{ backgroundColor: '#FF5C00', padding: 10, borderRadius: 5, marginTop: 10 }}
+                            onPress={() => {
+                                setModalVisible(false);
+                                nav.navigate('Carrinho', { produtos: carrinho }); // Passando o estado do carrinho para a tela Carrinho
+                            }}
+                        >
+                            <Text style={{ color: '#fff', textAlign: 'center' }}>Ir para Carrinho</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{ backgroundColor: '#FF5C00', padding: 10, borderRadius: 5, marginTop: 10 }}
+                            onPress={() => setModalVisible(false)}
+                        >
+                            <Text style={{ color: '#fff', textAlign: 'center' }}>Fechar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
         </View>
     );
 }

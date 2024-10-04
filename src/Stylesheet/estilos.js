@@ -1,10 +1,9 @@
 import { StyleSheet } from "react-native";
-import { ScrollView } from "react-native-web";
-
 
 const estilos = StyleSheet.create({
     fundo: {
         flex: 1,
+        backgroundColor: '#FFE600', // cor de fundo geral
     },
     container: {
         backgroundColor: '#FFE600',
@@ -14,32 +13,32 @@ const estilos = StyleSheet.create({
         marginHorizontal: 20,
         borderRadius: 40,
         borderColor: '#FF5C00',
-        borderWidth: 2
+        borderWidth: 2,
     },
     img: {
         marginTop: 25,
         height: 120,
         width: 142,
-        marginRight: 15
+        marginRight: 15,
     },
     fontes: {
         flexDirection: 'row',
-        marginTop: 40
+        marginTop: 40,
     },
     texto1: {
         marginRight: 20,
         fontWeight: 'bold',
-        color: 'red'
+        color: 'red',
     },
     texto2: {
         marginLeft: 20,
         fontWeight: 'bold',
-        color: 'red'
+        color: 'red',
     },
     linha: {
         backgroundColor: 'red',
         height: 100,
-        width: 3
+        width: 3,
     },
     botaoCadastro: {
         backgroundColor: '#FF0000',
@@ -49,8 +48,10 @@ const estilos = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         borderColor: 'darkred',
+        borderWidth: 1,
+        padding: 10,
         marginTop: 8,
-        marginLeft: 15
+        marginLeft: 15,
     },
     botaoLogin: {
         backgroundColor: '#FF0000',
@@ -59,9 +60,10 @@ const estilos = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         fontWeight: 'bold',
-        borderColor: '',
+        borderWidth: 1,
+        padding: 10,
         marginTop: 8,
-        marginRight: 5
+        marginRight: 5,
     },
     facebook: {
         flexDirection: 'row',
@@ -80,13 +82,13 @@ const estilos = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         fontWeight: 'bold',
-        padding: 3
+        padding: 3,
     },
     titulo: {
         color: 'red',
         fontWeight: 'bold',
         fontSize: 30,
-        marginTop: 20
+        marginTop: 20,
     },
     input: {
         backgroundColor: 'white',
@@ -97,7 +99,7 @@ const estilos = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         borderRadius: 15,
-        color: 'black'
+        color: 'black',
     },
     enviar: {
         backgroundColor: 'red',
@@ -106,7 +108,7 @@ const estilos = StyleSheet.create({
         borderColor: 'darkred',
         borderWidth: 2,
         borderRadius: 25,
-        padding: 5
+        padding: 5,
     },
     enviarLogin: {
         backgroundColor: 'red',
@@ -116,7 +118,7 @@ const estilos = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 25,
         padding: 5,
-        marginTop: 15
+        marginTop: 15,
     },
     containerEndereco: {
         backgroundColor: '#FFE600',
@@ -127,18 +129,15 @@ const estilos = StyleSheet.create({
         borderRadius: 40,
         borderColor: '#FF5C00',
         borderWidth: 2,
-
     },
     containerPedidos: {
         backgroundColor: '#FFE600',
         height: 520,
         borderTopColor: '#FF5C00',
         borderBottomColor: '#FF5C00',
-        borderTopColor: '#FF5C00',
-        borderBottomColor: '#FF5C00',
         borderWidth: 2,
         borderLeftColor: '#FFE600',
-        borderRightColor: '#FFE600'
+        borderRightColor: '#FFE600',
     },
     pedidos: {
         backgroundColor: 'white',
@@ -146,17 +145,17 @@ const estilos = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 5,
         marginTop: 15,
-        height: 95,
+        height: 100,
         marginHorizontal: 10,
         shadowColor: 'gray',
         shadowOffset: { width: 0, height: 3 },
         elevation: 5,
-        shadowOpacity: 0.5
+        shadowOpacity: 0.5,
     },
     imgPedidos: {
         height: 110,
         width: 132,
-        marginLeft: 55
+        marginLeft: 55,
     },
     inputPesquisa: {
         backgroundColor: 'white',
@@ -170,28 +169,21 @@ const estilos = StyleSheet.create({
         shadowColor: 'gray',
         shadowOffset: { width: 0, height: 3 },
         elevation: 5,
-        shadowOpacity: 0.5
+        shadowOpacity: 0.5,
     },
-    barraInteracao: {
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-
-    },
-
     header: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     imgEstilos: {
         width: 50,
-        height: 50
+        height: 50,
     },
     imgProduto: {
         height: 200,
         width: 220,
         marginTop: 35,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     alteraQuantidade: {
         flexDirection: 'row',
@@ -210,13 +202,16 @@ const estilos = StyleSheet.create({
     quantidade: {
         marginTop: 2,
         height: 30,
-        width: 30
+        width: 30,
+        textAlign: 'center',
+        fontSize: 18,
     },
     nomeProduto: {
         textAlign: 'center',
         marginTop: 25,
         fontSize: 20,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#B50B0B', // Cor do texto do nome do produto
     },
     itensEstilo: {
         flexDirection: 'row',
@@ -228,60 +223,77 @@ const estilos = StyleSheet.create({
         backgroundColor: '#B50B0B',
         width: 10,
         height: 10,
-        marginTop: 5
+        marginTop: 5,
     },
-    titulo: {
-        color: '#B50B0B',
-        fontSize: 20, 
-        fontWeight: 'bold',
-        alignSelf: 'center'
-    }, 
-    caixaProduto: {
-        backgroundColor: 'white',
-        shadowColor: 'gray',
-        shadowOffset: { width: 3, height: 3 },
-        elevation: 5,
-        shadowOpacity: 0.5,
-        width: 341,
-        height: 40,
-        alignSelf: 'center',
-        marginTop: 45, 
-        flexDirection: 'row' 
-    },
-    footer: {
-        backgroundColor: 'white',
-        shadowColor: 'gray',
-        shadowOffset: { width: 0, height: -3 },
-        elevation: 5,
-        shadowOpacity: 0.5,
-        height: 129,
-        width: 360,
-        marginTop: 150,
-        borderRadius: 25,
-        
-    }, 
-    dadosProdutos: {
-        color: 'gray',
-        marginLeft: 15,
-        marginHorizontal: 15,
-        marginTop: 5
-    },
-    botaoPedido: {
-        backgroundColor: '#B50B0B',
-        borderRadius: 25,
+    tituloCarrinho: {
+        fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginTop: 15,
-        color: 'white',
-        height: 20,
-        marginHorizontal: 15
+        marginBottom: 5,
+        color: '#B50B0B', // Cor do título do carrinho
     },
-    textoLogin: {
-        marginTop: 20,
-        color: '#B50B0B', 
+    valorCarrinho: {
+        fontSize: 16,
+        textAlign: 'center',
+        marginBottom: 10,
+        color: '#FF5C00', // Cor do valor total do carrinho
+    },
+    botaoCarrinho: {
+        backgroundColor: '#B50B0B',
+        padding: 10,
+        borderRadius: 10,
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    textoBotaoCarrinho: {
+        color: '#FFF',
+        fontSize: 16,
         fontWeight: 'bold',
-        alignSelf: 'center'
-    }
-
+    },
+    botaoVoltar: {
+        backgroundColor: '#FF5C00',
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 15,
+    },
+    textoBotao: {
+        color: '#fff',
+        fontSize: 18,
+    },
+    // Estilo para o botão excluir
+    botaoExcluir: {
+        backgroundColor: '#FF5C00',
+        padding: 5,
+        borderRadius: 5,
+        marginLeft: 10,
+    },
+    textoBotaoExcluir: {
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
+    // Estilo para a área do carrinho
+    carrinhoItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#FF5C00',
+        backgroundColor: '#FFF',
+        borderRadius: 10,
+        marginVertical: 5,
+        shadowColor: 'gray',
+        shadowOffset: { width: 0, height: 3 },
+        elevation: 5,
+        shadowOpacity: 0.5,
+    },
+    // Estilo para a quantidade
+    quantidade: {
+        marginHorizontal: 10,
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#B50B0B',
+    },
 });
-export { estilos }
+
+export { estilos };

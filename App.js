@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 // Importando todas as telas
 import Cria_Cadastro from './src/Cria_Cadastro';
 import Login from './src/Login';

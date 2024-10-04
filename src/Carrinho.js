@@ -1,105 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
-import { estilos } from './Stylesheet/estilos'; // Certifique-se que o estilo está correto
-import { Picker } from '@react-native-picker/picker'; // Importação correta do Picker
- 
-function Carrinho() {
-    const [itemSelecionado, setItemSelecionado] = useState("Verificar Status");
- 
-    function trocaItemSelecionado(itemIndex) {
-        setItemSelecionado(itemIndex);
-    }
- 
-    // Estado para controlar a quantidade dos itens
-    const [quantidades, setQuantidades] = useState([0, 0, 0]); // Inicializando 3 produtos com 0
- 
-    // Função para adicionar um item
+import { estilos } from './Stylesheet/estilos';
+import { Picker } from '@react-native-picker/picker'; 
+
+function Carrinho({ route }) {
+    const { produtos } = route.params; // Recebendo os produtos do carrinho
+    const [quantidades, setQuantidades] = useState([]);
+
+    useEffect(() => {
+        // Inicializando o estado de quantidades com base nos produtos recebidos
+        setQuantidades(produtos.map(() => 1)); // Inicializa todas as quantidades como 1
+    }, [produtos]);
+
     const adicionarItem = (index) => {
         const novaQuantidade = [...quantidades];
         novaQuantidade[index]++;
         setQuantidades(novaQuantidade);
     };
- 
-    // Função para remover um item
+
     const removerItem = (index) => {
         const novaQuantidade = [...quantidades];
-        if (novaQuantidade[index] > 0) {
+        if (novaQuantidade[index] > 1) {
             novaQuantidade[index]--;
             setQuantidades(novaQuantidade);
         }
     };
- 
-    // Função para excluir um item
+
     const excluirItem = (index) => {
         const novaQuantidade = [...quantidades];
         novaQuantidade[index] = 0; // Reseta a quantidade para 0
         setQuantidades(novaQuantidade);
     };
- 
+
     return (
         <View style={estilos.fundo}>
             <View style={{ backgroundColor: 'white', shadowColor: 'gray', shadowOffset: { width: 0, height: 3 }, elevation: 5, shadowOpacity: 0.5, height: 70, borderRadius: 25, flexDirection: 'row' }}>
                 <Image source={require('./img/carrinho.png')} style={{ width: 50, height: 50, alignSelf: 'center', marginLeft: 90 }} />
                 <Text style={estilos.titulo}>Seu Carrinho</Text>
             </View>
- 
+
             <ScrollView>
-                {/* Item 1 */}
-                <View style={estilos.caixaProduto}>
-                    <Text style={{ color: 'darkred', fontWeight: 'bold', fontSize: 20, marginTop: 5 }}>{quantidades[0]}x</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <TouchableOpacity onPress={() => excluirItem(0)}>
-                            <Image source={require('./img/lixo.png')} style={{ height: 26, width: 26, marginLeft: 260, marginTop: 10 }} />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => adicionarItem(0)}>
-                            <Image source={require('./img/plus.png')} style={{ height: 26, width: 26, marginTop: 10 }} />
-                        </TouchableOpacity>
+                {produtos.map((produto, index) => (
+                    <View key={index} style={estilos.carrinhoItem}>
+                        <Image source={{ uri: produto.imagem_url }} style={estilos.imagemProduto} />
+                        <Text style={estilos.nomeProduto}>{produto.nome_produto}</Text>
+                        <Text style={estilos.precoProduto}>R$ {produto.preco.toFixed(2)}</Text>
+                        
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <TouchableOpacity onPress={() => removerItem(index)} style={{ marginHorizontal: 5 }}>
+                                <Text style={estilos.botaoQuantidade}>-</Text>
+                            </TouchableOpacity>
+                            <Text style={estilos.quantidade}>{quantidades[index]}</Text>
+                            <TouchableOpacity onPress={() => adicionarItem(index)} style={{ marginHorizontal: 5 }}>
+                                <Text style={estilos.botaoQuantidade}>+</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => excluirItem(index)} style={{ marginLeft: 10 }}>
+                                <Text style={estilos.botaoExcluir}>Excluir</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
- 
-                {/* Item 2 */}
-                <View style={estilos.caixaProduto}>
-                    <Text style={{ color: 'darkred', fontWeight: 'bold', fontSize: 20, marginTop: 5 }}>{quantidades[1]}x</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <TouchableOpacity onPress={() => excluirItem(1)}>
-                            <Image source={require('./img/lixo.png')} style={{ height: 26, width: 26, marginLeft: 260, marginTop: 10 }} />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => adicionarItem(1)}>
-                            <Image source={require('./img/plus.png')} style={{ height: 26, width: 26, marginTop: 10 }} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
- 
-                {/* Item 3 */}
-                <View style={estilos.caixaProduto}>
-                    <Text style={{ color: 'darkred', fontWeight: 'bold', fontSize: 20, marginTop: 5 }}>{quantidades[2]}x</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <TouchableOpacity onPress={() => excluirItem(2)}>
-                            <Image source={require('./img/lixo.png')} style={{ height: 26, width: 26, marginLeft: 260, marginTop: 10 }} />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => adicionarItem(2)}>
-                            <Image source={require('./img/plus.png')} style={{ height: 26, width: 26, marginTop: 10 }} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
- 
-                <View style={{ alignItems: 'center' }}>
-                    <Image source={require('./img/pix.png')} style={{ marginTop: 5 }} />
-                    <Text style={estilos.botaoPedido}>Finalizar Pedido</Text>
-                </View>
- 
-                <Picker
-                style={{color: '#B50B0B', textAlign: 'center', marginTop: 5, border: 'none', marginHorizontal: 50, borderRadius: 15, height: 65, fontSize: 25, fontWeight: 'bold'}}
-                    selectedValue={itemSelecionado}
-                    onValueChange={trocaItemSelecionado}>
-                    <Picker.Item label="Verificar Status" value="0" />
-                    <Picker.Item label="Você pediu" value="1" />
-                    <Picker.Item label="Nome:" value="2" />
-                    <Picker.Item label="Forma de" value="3" />
-                </Picker>
+                ))}
             </ScrollView>
+
+            <TouchableOpacity style={estilos.botaoFinalizar}>
+                <Text style={estilos.textoBotaoFinalizar}>Finalizar Pedido</Text>
+            </TouchableOpacity>
         </View>
     );
 }
- 
+
 export default Carrinho;
