@@ -10,11 +10,11 @@ Este é um aplicativo mobile de delivery desenvolvido em React Native que permit
  
 	✨ Funcionalidades
 Autenticação de Usuários: Login e cadastro de novos usuários.
-Escolha de Produtos: O usuário pode navegar por categorias e selecionar itens do cardápio.
-Personalização de Lanches: O usuário pode personalizar seu lanche utilizando switches para adicionar ou remover ingredientes. Navegação Simples: Sistema de navegação implementado sem o uso de react-navigation, facilitando a transição entre telas através de eventos onPress.	Visualização do Pedido: Visualize o hambúrguer personalizado em tempo real conforme os switches são ativados. Interface Responsiva: Design adaptável a diferentes tamanhos de tela, focado em uma experiência fluida para o usuário. 
+Escolha de Produtos: O usuário pode selecionar itens do cardápio.
+Navegação Simples: Sistema de navegação usando react-navigation, facilitando a transição entre telas, Visualização do Pedido: Visualize o hambúrguer em tempo real. Interface Responsiva: Design adaptável a diferentes tamanhos de tela, focado em uma experiência fluida para o usuário. 
  
 	🛠️ Tecnologias Utilizada
 React Native: Framework para desenvolvimento de aplicativos móveis nativos.
 JavaScript/JSX: Linguagem principal utilizada no desenvolvimento.
-Componentes Customizados: Uso de componentes como TouchableHighlight, TouchableOpacity, Picker, e Switch para criar interatividade.
+Componentes Customizados: Uso de componentes como TouchableHighlight, TouchableOpacity e Picker para criar interatividade.
 Folhas de Estilo Separadas: Estilos organizados em arquivos .js separados.
