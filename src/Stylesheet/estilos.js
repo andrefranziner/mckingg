@@ -294,6 +294,55 @@ const estilos = StyleSheet.create({
         fontWeight: 'bold',
         color: '#B50B0B',
     },
+
+    // Adicione esses estilos no seu Stylesheet
+    resumoPedido: {
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        shadowColor: 'gray',
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 3,
+        shadowOpacity: 0.4,
+    },
+    resumoTitulo: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    resumoItem: {
+        marginBottom: 10,
+    },
+    resumoNome: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    resumoQuantidade: {
+        fontSize: 16,
+    },
+    resumoPagamento: {
+        fontSize: 16,
+        fontStyle: 'italic',
+    },
+
+    botaoFinalizar: {
+        backgroundColor: '#B50B0B',  // Cor verde para indicar ação positiva
+        borderRadius: 10,            // Bordas arredondadas
+        padding: 15,                 // Espaçamento interno
+        alignItems: 'center',        // Alinha o texto no centro
+        margin: 20,                  // Margem ao redor do botão
+        shadowColor: '#000',         // Sombra
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation: 5,                // Sombra para Android
+    },
+    textoBotaoFinalizar: {
+        color: '#fff',               // Texto branco
+        fontSize: 18,                // Tamanho da fonte
+        fontWeight: 'bold',          // Negrito para destacar
+    },
 });
 
 export { estilos };

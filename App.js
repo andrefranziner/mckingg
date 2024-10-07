@@ -15,6 +15,7 @@ import Carrinho from './src/Carrinho';
 import Pagamento from './src/Pagamento';
 import Finalizado from './src/Finalizado';
 import CadastroProdutos from "./src/CadastroProdutos";
+import Confirma from "./src/Confirma";
 
 function App() {
   const Stack = createNativeStackNavigator();
@@ -35,10 +36,15 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={isLoggedIn ? "Pedidos" : "Pedidos"}>
+      <Stack.Navigator initialRouteName={isLoggedIn ? "Login" : "Login"}>
         <Stack.Screen
           name="Pedidos"
           component={Pedidos}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Confirma"
+          component={Confirma}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -65,9 +71,9 @@ function App() {
           name="Carrinho"
           component={Carrinho}
           options={{
-            headerShown: false,
-            headerStyle: { backgroundColor: "#0c212d" },
-            headerTintColor: "#b88e41"
+            headerShown: true,
+            headerStyle: { backgroundColor: "white" },
+            headerTintColor: "#B50B0B"
           }}
         />
         <Stack.Screen name="Login" component={Login} />

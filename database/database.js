@@ -2,7 +2,6 @@
 import supabase from './supabaseClient';
 import { v4 as uuidv4 } from 'uuid'; // Para gerar nomes únicos para as imagens
 
-
 // CADASTRO DE PRODUTOS
 
 export const uploadImage = async (imagemUri) => {
@@ -61,7 +60,6 @@ export const insertProduto = async (nomeProduto, descricao, preco, imagem_url) =
 // CADASTRO DE USUÁRIOS
 
 // Função para inserir um novo usuário
-// Função para inserir um novo usuário
 export const insertUsuario = async (email, senha) => {
     const { data, error } = await supabase
         .from('usuario') // nome da tabela em minúsculas
@@ -74,7 +72,6 @@ export const insertUsuario = async (email, senha) => {
     return data; // retorne os dados inseridos, se necessário
 };
 
-// Função para verificar se o usuário existe no banco de dados
 // Função para verificar se o usuário existe no banco de dados
 export const getUsuarioByEmail = async (email) => {
     const { data, error } = await supabase
@@ -93,7 +90,31 @@ export const getUsuarioByEmail = async (email) => {
     return data[0]; // Retorna o primeiro usuário encontrado
 };
 
+// Função para inserir um pedido
+export const insertPedido = async (produtos, valorSubtotal, formaPagamento, status, idUsuario) => {
+    console.log('Inserindo pedido:', {
+        produtos: produtos,
+        valor_subtotal: valorSubtotal,
+        forma_pagamento: formaPagamento,
+        status: status,
+        id_usuario: idUsuario // Adicionando o ID do usuário
+    });
 
+    // Usar o método map para preparar os produtos
+    const produtosInsert = produtos.map(produto => ({
+        nome_produto: produto.nome_produto,
+        valor_subtotal: parseFloat(produto.preco) * produto.quantidade,
+        quantidade: produto.quantidade // Certifique-se de que a quantidade está correta
+    }));
 
+    const { data, error } = await supabase
+        .from('pedidos') // nome da tabela em minúsculas
+        .insert(produtosInsert); // Inserindo diretamente o array de produtos
 
-// Outras funções...
+    if (error) {
+        console.error('Erro ao inserir o pedido:', error.message);
+        throw error; // Lance o erro se houver
+    }
+
+    return data; // Retorne os dados inseridos
+};

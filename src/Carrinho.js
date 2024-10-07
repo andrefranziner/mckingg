@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView, Alert } from "react-native";
 import { estilos } from './Stylesheet/estilos';
-import { Picker } from '@react-native-picker/picker'; 
+import { supabase } from '../database/database';  // Certifique-se de que o arquivo supabase.js esteja configurado
 
-function Carrinho({ route }) {
-    const { produtos } = route.params; // Recebendo os produtos do carrinho
+function Carrinho({ route, navigation }) {
+    const { produtos: produtosIniciais, idUsuario } = route.params;  // Recebendo os produtos e ID do usuário
+    const [produtos, setProdutos] = useState([]);
     const [quantidades, setQuantidades] = useState([]);
 
     useEffect(() => {
-        // Inicializando o estado de quantidades com base nos produtos recebidos
-        setQuantidades(produtos.map(() => 1)); // Inicializa todas as quantidades como 1
-    }, [produtos]);
+        // Inicializando o estado de produtos e quantidades com base nos produtos recebidos
+        setProdutos(produtosIniciais);
+        setQuantidades(produtosIniciais.map(() => 1)); // Inicializa todas as quantidades como 1
+    }, [produtosIniciais]);
 
     const adicionarItem = (index) => {
         const novaQuantidade = [...quantidades];
@@ -27,10 +29,37 @@ function Carrinho({ route }) {
     };
 
     const excluirItem = (index) => {
-        const novaQuantidade = [...quantidades];
-        novaQuantidade[index] = 0; // Reseta a quantidade para 0
-        setQuantidades(novaQuantidade);
+        const novosProdutos = produtos.filter((_, i) => i !== index);
+        const novasQuantidades = quantidades.filter((_, i) => i !== index);
+        setProdutos(novosProdutos);
+        setQuantidades(novasQuantidades);
     };
+
+    const calcularSubtotal = () => {
+        return produtos.reduce((total, produto, index) => {
+            return total + produto.preco * quantidades[index];
+        }, 0).toFixed(2);
+    };
+
+    const finalizarPedido = async () => {
+        const subtotal = calcularSubtotal();
+    
+        // Cria um objeto com as informações que serão enviadas para Confirma.js
+        const produtosInfo = produtos.map((produto, index) => ({
+            nome_produto: produto.nome_produto,
+            quantidade: quantidades[index],
+            preco: produto.preco,
+        }));
+    
+        // Navega para a tela de confirmação, enviando os produtos e subtotal
+        navigation.navigate('Confirma', {
+            produtos: produtosInfo,
+            valorSubtotal: subtotal,
+            idUsuario: idUsuario // Enviando o ID do usuário, se necessário
+        });
+    };
+    
+    
 
     return (
         <View style={estilos.fundo}>
@@ -60,9 +89,22 @@ function Carrinho({ route }) {
                         </View>
                     </View>
                 ))}
+
+                {/* Resumo do pedido */}
+                <View style={estilos.resumoPedido}>
+                    <Text style={estilos.resumoTitulo}>Você pediu:</Text>
+                    {produtos.map((produto, index) => (
+                        <View key={index} style={estilos.resumoItem}>
+                            <Text style={estilos.resumoNome}>Nome: {produto.nome_produto}</Text>
+                            <Text style={estilos.resumoQuantidade}>Quantidade: {quantidades[index]}</Text>
+                            <Text style={estilos.resumoPagamento}>Forma de pagamento: Pix</Text>
+                        </View>
+                    ))}
+                    <Text style={estilos.total}>Subtotal: R$ {calcularSubtotal()}</Text>
+                </View>
             </ScrollView>
 
-            <TouchableOpacity style={estilos.botaoFinalizar}>
+            <TouchableOpacity style={estilos.botaoFinalizar} onPress={finalizarPedido}>
                 <Text style={estilos.textoBotaoFinalizar}>Finalizar Pedido</Text>
             </TouchableOpacity>
         </View>
