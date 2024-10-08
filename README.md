@@ -1,7 +1,7 @@
 
  ![logo icon](https://github.com/user-attachments/assets/fe393c77-091b-4e8d-86fa-cce84b8a39c6)
-![Captura de tela 2024-09-30 093008](https://github.com/user-attachments/assets/cc468f51-b04f-4f56-868e-5fe8cb06c6c5)
-![Captura de tela 2024-09-30 093313](https://github.com/user-attachments/assets/b9d7bdd6-af96-4b0a-a0d2-28e99479c608)
+ ![7a4cf448-e5b7-46ed-9423-0d8e35e51eaf](https://github.com/user-attachments/assets/8c1bb6df-fd21-47bc-986a-2b6f1d88ffd9)
+
 
 
             
