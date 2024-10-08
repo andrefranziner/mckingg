@@ -13,7 +13,7 @@ Autenticação de Usuários: Login e cadastro de novos usuários.
 Escolha de Produtos: O usuário pode selecionar itens do cardápio.
 Navegação Simples: Sistema de navegação usando react-navigation, facilitando a transição entre telas, Visualização do Pedido: Visualize o hambúrguer em tempo real. Interface Responsiva: Design adaptável a diferentes tamanhos de tela, focado em uma experiência fluida para o usuário. 
  
-	🛠️ Tecnologias Utilizada
+	🛠️ Tecnologias Utilizadas
 React Native: Framework para desenvolvimento de aplicativos móveis nativos.
 JavaScript/JSX: Linguagem principal utilizada no desenvolvimento.
 Componentes Customizados: Uso de componentes como TouchableHighlight, TouchableOpacity e Picker para criar interatividade.
