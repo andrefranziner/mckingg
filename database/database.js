@@ -91,25 +91,19 @@ export const getUsuarioByEmail = async (email) => {
 };
 
 // Função para inserir um pedido
-export const insertPedido = async (produtos, valorSubtotal, formaPagamento, status, idUsuario) => {
-    console.log('Inserindo pedido:', {
-        produtos: produtos,
-        valor_subtotal: valorSubtotal,
-        forma_pagamento: formaPagamento,
-        status: status,
-        id_usuario: idUsuario // Adicionando o ID do usuário
-    });
-
-    // Usar o método map para preparar os produtos
+// Função para inserir um pedido
+export const insertPedido = async (produtos) => {
     const produtosInsert = produtos.map(produto => ({
         nome_produto: produto.nome_produto,
-        valor_subtotal: parseFloat(produto.preco) * produto.quantidade,
-        quantidade: produto.quantidade // Certifique-se de que a quantidade está correta
+        quantidade: produto.quantidade,
+        valor_subtotal: parseFloat(produto.preco) * produto.quantidade
     }));
 
+    console.log('Inserindo pedidos:', produtosInsert); // Log para verificar os pedidos
+
     const { data, error } = await supabase
-        .from('pedidos') // nome da tabela em minúsculas
-        .insert(produtosInsert); // Inserindo diretamente o array de produtos
+        .from('pedidos')
+        .insert(produtosInsert);
 
     if (error) {
         console.error('Erro ao inserir o pedido:', error.message);

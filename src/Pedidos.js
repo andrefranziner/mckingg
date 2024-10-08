@@ -9,6 +9,7 @@ function Pedidos() {
     const [produtos, setProdutos] = useState([]);
     const [carrinho, setCarrinho] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [pesquisa, setPesquisa] = useState(''); // Estado para armazenar a pesquisa
 
     // Função para buscar os produtos do Supabase
     const fetchProdutos = async () => {
@@ -48,6 +49,11 @@ function Pedidos() {
         });
     };
 
+    // Função para filtrar produtos com base na pesquisa
+    const produtosFiltrados = produtos.filter(produto =>
+        produto.nome_produto.toLowerCase().includes(pesquisa.toLowerCase())
+    );
+
     return (
         <View style={estilos.fundo}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -64,16 +70,18 @@ function Pedidos() {
                 style={estilos.inputPesquisa}
                 placeholder='Pesquisar'
                 placeholderTextColor="#888"
+                value={pesquisa} // Bind o valor do input ao estado de pesquisa
+                onChangeText={setPesquisa} // Atualiza o estado de pesquisa
             />
 
             <View style={estilos.containerPedidos}>
                 <ScrollView>
-                    {produtos.map((produto, index) => (
-                        <View key={index} style={[estilos.pedidos, { flexDirection: 'row', alignItems: 'center', marginBottom: 20 }]}>
+                    {produtosFiltrados.map((produto, index) => (
+                        <View key={index} style={[estilos.pedidos, { flexDirection: 'row', alignItems: 'center', marginBottom: 20, flexWrap: 'wrap' }]}>
                             <Image source={{ uri: produto.imagem_url }} style={{ width: 80, height: 80, borderRadius: 10, marginRight: 15 }} />
                             <View style={{ flex: 1 }}>
-                                <Text style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 5 }}>{produto.nome_produto}</Text>
-                                <Text style={{ fontSize: 14, color: '#666', marginBottom: 5 }}>{produto.descricao}</Text>
+                                <Text style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 5, flexWrap: 'wrap' }}>{produto.nome_produto}</Text>
+                                <Text style={{ fontSize: 14, color: '#666', marginBottom: 5, flexWrap: 'wrap' }}>{produto.descricao}</Text>
                                 <Text style={{ color: '#FF5C00', fontWeight: 'bold', fontSize: 16 }}>R$ {produto.preco.toFixed(2)}</Text>
                             </View>
                             <TouchableOpacity onPress={() => adicionarAoCarrinho(produto)}>
@@ -84,7 +92,8 @@ function Pedidos() {
                 </ScrollView>
             </View>
 
-            <TouchableOpacity 
+
+            <TouchableOpacity
                 style={{ position: 'absolute', bottom: 20, right: 20, backgroundColor: '#FF5C00', borderRadius: 50, padding: 10 }}
                 onPress={() => setModalVisible(true)}
             >

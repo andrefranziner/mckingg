@@ -131,26 +131,19 @@ const estilos = StyleSheet.create({
         borderWidth: 2,
     },
     containerPedidos: {
-        backgroundColor: '#FFE600',
-        height: 520,
-        borderTopColor: '#FF5C00',
-        borderBottomColor: '#FF5C00',
-        borderWidth: 2,
-        borderLeftColor: '#FFE600',
-        borderRightColor: '#FFE600',
+        flex: 1,
+        padding: 10,
+        // Define largura máxima se necessário
+        // maxWidth: '100%',
+        // Se precisar, você pode adicionar margin
     },
     pedidos: {
-        backgroundColor: 'white',
-        borderColor: '#FF5C00',
-        borderWidth: 2,
-        borderRadius: 5,
-        marginTop: 15,
-        height: 100,
-        marginHorizontal: 10,
-        shadowColor: 'gray',
-        shadowOffset: { width: 0, height: 3 },
-        elevation: 5,
-        shadowOpacity: 0.5,
+        // Aqui você pode adicionar uma cor de fundo ou outras propriedades se necessário
+        backgroundColor: '#f9f9f9',
+        borderRadius: 10,
+        padding: 10, // Adicionando um pouco de padding para espaçamento interno
+        borderColor: 'red',
+        borderWidth: 1
     },
     imgPedidos: {
         height: 110,

@@ -1,31 +1,23 @@
 import React from "react";
 import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { supabase } from '../database/database'; // Certifique-se de que o arquivo supabase.js está configurado
+import { insertPedido } from '../database/database'; // Ajuste o caminho conforme necessário
+
 
 function Confirma({ route, navigation }) {
-    const { produtos, valorSubtotal, idUsuario } = route.params; // Recebendo as informações do pedido
+    const { produtos, valorSubtotal } = route.params; // Recebendo as informações do pedido
 
     const registrarPedido = async () => {
         try {
-            // Inserir cada produto na tabela de pedidos
-            const pedidosInsert = produtos.map(produto => ({
-                nome_produto: produto.nome_produto,
-                quantidade: produto.quantidade,
-                valor_subtotal: parseFloat(produto.quantidade) * produto.preco, // Calcular subtotal por produto
-                forma_pagamento: 'Pix',
-                status: 'pendente',
-                id_usuario: idUsuario // Adicionando o ID do usuário
-            }));
-
-            const { error } = await supabase
-                .from('pedidos') // Altere para o nome correto da tabela se necessário
-                .insert(pedidosInsert);
-
-            if (error) throw error; // Lançar erro se houver
-
-            Alert.alert('Sucesso', 'Pedido registrado com sucesso!');
-            navigation.navigate('Home'); // Redirecionar para a tela inicial ou outra tela desejada
+            console.log("Iniciando o registro dos pedidos...");
+    
+            const data = await insertPedido(produtos); // Certifique-se de que produtos é o que você espera
+            console.log("Pedidos registrados com sucesso:", data);
+            Alert.alert('Sucesso', 'Todos os pedidos registrados com sucesso!');
+            
+            navigation.navigate('Pedidos');
         } catch (error) {
+            console.error("Erro ao registrar pedido:", error);
             Alert.alert('Erro', 'Ocorreu um erro ao registrar o pedido: ' + error.message);
         }
     };
@@ -44,12 +36,13 @@ function Confirma({ route, navigation }) {
                 <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Subtotal: R$ {valorSubtotal}</Text>
             </ScrollView>
 
-            <TouchableOpacity 
-                style={{ backgroundColor: 'blue', padding: 15, borderRadius: 5, marginTop: 20 }} 
-                onPress={registrarPedido}
+            <TouchableOpacity
+                style={{ backgroundColor: 'blue', padding: 15, borderRadius: 5, marginTop: 20 }}
+                onPress={registrarPedido} // Certifique-se de que isso está chamando a função
             >
                 <Text style={{ color: 'white', textAlign: 'center', fontSize: 18 }}>Confirmar Pedido</Text>
             </TouchableOpacity>
+
         </View>
     );
 }

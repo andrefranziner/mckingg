@@ -36,7 +36,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={isLoggedIn ? "Login" : "Login"}>
+      <Stack.Navigator initialRouteName={isLoggedIn ? "Pedidos" : "Pedidos"}>
         <Stack.Screen
           name="Pedidos"
           component={Pedidos}
