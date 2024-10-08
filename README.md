@@ -1,7 +1,5 @@
 
  ![logo icon](https://github.com/user-attachments/assets/fe393c77-091b-4e8d-86fa-cce84b8a39c6)
-![Captura de tela 2024-09-30 093008](https://github.com/user-attachments/assets/cc468f51-b04f-4f56-868e-5fe8cb06c6c5)
-![Captura de tela 2024-09-30 093313](https://github.com/user-attachments/assets/b9d7bdd6-af96-4b0a-a0d2-28e99479c608)
 ![6181d6c7-5745-45ab-875d-ac9af4bdca4c](https://github.com/user-attachments/assets/15fff528-94f3-429b-8659-a2606dc2030c)
 ![d4617403-90b2-4a56-8110-1eaaaba5383c](https://github.com/user-attachments/assets/6ecf1cf7-9907-47b2-8c48-5c6aa4d7b539)
 ![a8aff734-6c58-4f7d-8197-fd5fbde72064](https://github.com/user-attachments/assets/00a73d97-d8f6-4066-9940-70cda545dbd1)
